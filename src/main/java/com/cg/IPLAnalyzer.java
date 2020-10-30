@@ -107,4 +107,22 @@ public class IPLAnalyzer {
 
 		return batmenBestStrikingRateWithGreatestAverage ;
 	}
+	public List<IPLBattingCSV> getMaximumRunWithGreatestAverage() throws IOException{
+		int maximumRun = IPLBattingCSVList.stream()
+				.map(player ->player.getRuns())
+				.max(Integer::compare)
+				.get();
+		List<IPLBattingCSV> cricketerWithMaximumRun=IPLBattingCSVList.stream()
+				.filter(player->player.getRuns()==maximumRun)
+				.collect(Collectors.toList());
+		double greatestAverage=cricketerWithMaximumRun.stream()
+				.map(player->player.getAverage())
+				.max(Double::compare)
+				.get();
+		List<IPLBattingCSV> batmenBestStrikingRateWithGreatestAverage =cricketerWithMaximumRun.stream()
+				.filter(player->player.getAverage()==greatestAverage)
+				.collect(Collectors.toList());
+
+		return batmenBestStrikingRateWithGreatestAverage ;
+	}
 }
