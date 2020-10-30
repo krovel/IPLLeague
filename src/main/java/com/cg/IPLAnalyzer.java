@@ -89,4 +89,22 @@ public class IPLAnalyzer {
 
 		return batmenBestStrikingRateWithMax4sAnd6s ;
 	}
+	public List<IPLBattingCSV> getGreatestAverageWithBestStrikingRate() throws IOException{
+		double greatestAverage = IPLBattingCSVList.stream()
+				.map(player ->player.getAverage())
+				.max(Double::compare)
+				.get();
+		List<IPLBattingCSV> cricketerWithGreatestAverage=IPLBattingCSVList.stream()
+				.filter(player->player.getAverage()==greatestAverage)
+				.collect(Collectors.toList());
+		double bestStrikeRate=cricketerWithGreatestAverage.stream()
+				.map(player->player.getSR())
+				.max(Double::compare)
+				.get();
+		List<IPLBattingCSV> batmenBestStrikingRateWithGreatestAverage =cricketerWithGreatestAverage.stream()
+				.filter(player->player.getSR()==bestStrikeRate)
+				.collect(Collectors.toList());
+
+		return batmenBestStrikingRateWithGreatestAverage ;
+	}
 }
