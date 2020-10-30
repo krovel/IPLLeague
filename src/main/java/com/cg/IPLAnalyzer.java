@@ -18,7 +18,7 @@ import opencsv.*;
 public class IPLAnalyzer {
 	
 	public static List<IPLBattingCSV> IPLBattingCSVList;
-	public static List<IPLBowlingCSV> IplIPLBowlingCSVList;
+	public static List<IPLBowlingCSV> IPLBowlingCSVList;
 	
 	public int loadCSVData(String csvFile) {
 		int numOfEntries=0;
@@ -49,7 +49,7 @@ public class IPLAnalyzer {
 	public void loadBowlingDataToList(String csvFile)throws IPLException{
 		try {
 			Reader reader=Files.newBufferedReader(Paths.get(csvFile));
-		    IplIPLBowlingCSVList = new CsvToBeanBuilder(reader).withType(IPLBowlingCSV.class).build().parse();
+		    IPLBowlingCSVList = new CsvToBeanBuilder(reader).withType(IPLBowlingCSV.class).build().parse();
 		}
 		catch(IOException e) {
 			throw new IPLException("File path is incorrect",IPLException.ExceptionType.FILE_INCORRECT);
@@ -66,10 +66,10 @@ public class IPLAnalyzer {
 	
 	//UC7......
 	public List<IPLBowlingCSV> getTopBowlingAverages(){
-		List<IPLBowlingCSV> sortedAvgBowlingList = IplIPLBowlingCSVList.stream()
+		List<IPLBowlingCSV> sortedAvgBowlingList = IPLBowlingCSVList.stream()
+				.filter(player->player.avg!=0)
 				.sorted((player1, player2) -> Double.compare(player1.avg, player2.avg))
 				.collect(Collectors.toList());
-		Collections.reverse(sortedAvgBowlingList);
 		return sortedAvgBowlingList;
 	}
 	
@@ -81,6 +81,13 @@ public class IPLAnalyzer {
 		return sortedStrikingRateList;
 	}
 	
+	public List<IPLBowlingCSV> getTopBowlingStrikeRates(){
+		List<IPLBowlingCSV> sortedBowlingStrikingRateList = IPLBowlingCSVList.stream()
+				.filter(player->player.sr!=0)
+				.sorted((player1, player2) -> Double.compare(player1.sr, player2.sr))
+				.collect(Collectors.toList());
+		return sortedBowlingStrikingRateList;
+	}
 	public List<IPLBattingCSV> getTopBatmenWithMax6s(){
 		List<IPLBattingCSV> batmenWithMax6s = IPLBattingCSVList.stream()
 				.sorted((player1, player2) -> Double.compare(player1.get6s(), player2.get6s()))
