@@ -47,4 +47,11 @@ public class IPLAnalyzer {
 		Collections.reverse(sortedAvgList);
 		return sortedAvgList;
 	}	
+	public List<IPLBattingCSV> getTopStrikingRates(String csvFile) throws Exception {
+		List<IPLBattingCSV> sortedStrikingRateList = IPLBattingCSVList.stream()
+				.sorted((player1, player2) -> Double.compare(player1.getSR(), player2.getSR()))
+				.collect(Collectors.toList());
+		Collections.reverse(sortedStrikingRateList);
+		return sortedStrikingRateList;
+	}
 }
