@@ -62,4 +62,10 @@ public class IPLAnalyzerTest {
 		List<IPLBattingCSV> listOfTopAverageWithBestStrikERate = iplLeagueAnalyser.getGreatestAverageWithBestStrikingRate();
 		assertEquals("MS Dhoni", listOfTopAverageWithBestStrikERate.get(0).getPlayer());
 	}
+	@Test
+	public void givenIPLBattingCSVCSVFileReturnsCricketersWithMaximumRunAndBestAverages() throws Exception {
+		List<IPLBattingCSV> listOfMaxRun = iplLeagueAnalyser
+				.getMaximumRunWithGreatestAverage();
+		assertEquals("David Warner", listOfMaxRun.get(0).getPlayer());
+	}
 }
