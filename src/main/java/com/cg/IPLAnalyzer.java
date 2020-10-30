@@ -47,11 +47,26 @@ public class IPLAnalyzer {
 		Collections.reverse(sortedAvgList);
 		return sortedAvgList;
 	}	
-	public List<IPLBattingCSV> getTopStrikingRates(String csvFile) throws Exception {
+	public List<IPLBattingCSV> getTopStrikingRates(String csvFile) throws IOException {
 		List<IPLBattingCSV> sortedStrikingRateList = IPLBattingCSVList.stream()
 				.sorted((player1, player2) -> Double.compare(player1.getSR(), player2.getSR()))
 				.collect(Collectors.toList());
 		Collections.reverse(sortedStrikingRateList);
 		return sortedStrikingRateList;
+	}
+	public List<IPLBattingCSV> getTopBatmenWithMax6s(String csvFile) throws IOException {
+		List<IPLBattingCSV> batmenWithMax6s = IPLBattingCSVList.stream()
+				.sorted((player1, player2) -> Double.compare(player1.get6s(), player2.get6s()))
+				.collect(Collectors.toList());
+		Collections.reverse(batmenWithMax6s);
+		return batmenWithMax6s ;
+	}
+
+	public List<IPLBattingCSV> getTopBatmenWithMax4s(String csvFile) throws IOException {
+		List<IPLBattingCSV> batmenWithMax4s = IPLBattingCSVList.stream()
+				.sorted((player1, player2) -> Double.compare(player1.get4s(), player2.get4s()))
+				.collect(Collectors.toList());
+		Collections.reverse(batmenWithMax4s);
+		return batmenWithMax4s ;
 	}
 }
