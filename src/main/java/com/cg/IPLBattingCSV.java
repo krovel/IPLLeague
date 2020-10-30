@@ -91,7 +91,7 @@ public class IPLBattingCSV {
 	
 	@Override
 	public String toString() {
-		return "IPLBattingCSV{" + "Pos='" + pos + ", PLAYER='" + player 
+		return "IplData{" + "Pos='" + pos + ", PLAYER='" + player 
 				+ ", Mat='" + mat+", INNS='"+ inns +",NO='"+ no +", RUNS='"+runs+
 				", HS='"+hs+",Avg='"+avg+",BF='"+bf+",sr='"+sr
 				+",100s='"+num100+",50s='"+num50+",4s='"+num4s+",6s='"+num6s
