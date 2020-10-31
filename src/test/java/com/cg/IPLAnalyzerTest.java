@@ -131,4 +131,10 @@ public class IPLAnalyzerTest {
 		assertEquals("Andre Russell", playerWithMostRunAndMostWicket.get(0));
 		assertEquals("Hardik Pandya", playerWithMostRunAndMostWicket.get(1));
 	}
+	
+	@Test
+	public void givenBattingData_whenSortedWithWithMaxCenturiesAndBattingAverage_ShouldReturnCorrectList() {
+		List<IPLBattingCSV> playerWithMaxCenturyAndBestBattingAverage=IPLAnalyzer.getPlayerWithMax100AndBestBattingAverage();
+		assertEquals("David Warner",playerWithMaxCenturyAndBestBattingAverage.get(0).player);
+	}
 }
