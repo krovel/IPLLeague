@@ -117,6 +117,15 @@ public class IPLAnalyzer {
 		return sortedStrikeRateAndAverageList;
 	}
 	
+	public List<IPLBowlingCSV> getBowlersWithMaxWicketsAndBestAverage(){
+		List<IPLBowlingCSV> sortedWithMaxWicketsAndAverageList = IPLBowlingCSVList.stream()
+				.filter(player->player.avg!=0)
+				.sorted((player1, player2) -> Double.compare(player1.wkts+(1/player1.avg), player2.wkts+(1/player2.avg)))
+				.collect(Collectors.toList());
+		Collections.reverse(sortedWithMaxWicketsAndAverageList);
+		return sortedWithMaxWicketsAndAverageList;
+	}
+	
 	public List<IPLBattingCSV> getTopBatmenWithMax6s(){
 		List<IPLBattingCSV> batmenWithMax6s = IPLBattingCSVList.stream()
 				.sorted((player1, player2) -> Double.compare(player1.get6s(), player2.get6s()))
