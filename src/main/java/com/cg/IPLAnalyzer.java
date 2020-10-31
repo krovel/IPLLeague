@@ -200,4 +200,27 @@ public class IPLAnalyzer {
 		return batmenBestStrikingRateWithGreatestAverage ;
 	}
 	
+	public List<String> getBestBattingAndBowlingAverage(){
+
+		List<String> bestBattingAndBowlingAverage=new ArrayList<>();
+
+		List<IPLBattingCSV> bestBattingAvg = IPLBattingCSVList.stream()
+				.sorted((player1, player2) -> Double.compare(player1.avg,player2.avg))
+				.collect(Collectors.toList());
+		Collections.reverse(bestBattingAvg);
+
+		List<IPLBowlingCSV> bestBowlingAvg=IPLBowlingCSVList.stream()
+				.filter(player->player.avg!=0)
+				.sorted((player1, player2) -> Double.compare(player1.avg, player2.avg))
+				.collect(Collectors.toList());
+
+		for (IPLBattingCSV batter : bestBattingAvg) {
+			for (IPLBowlingCSV bowler : bestBowlingAvg) {
+				if (batter.player.equals(bowler.player)) {
+					bestBattingAndBowlingAverage.add(batter.player);
+				}
+			}
+		}
+		return bestBattingAndBowlingAverage;		
+	}
 }
