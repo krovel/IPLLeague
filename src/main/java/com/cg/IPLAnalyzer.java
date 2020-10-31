@@ -46,7 +46,7 @@ public class IPLAnalyzer {
 		}
 	}
 	
-	public void loadBowlingDataToList(String csvFile)throws IPLException{
+	public void loadIPLBowlingCSVToList(String csvFile)throws IPLException{
 		try {
 			Reader reader=Files.newBufferedReader(Paths.get(csvFile));
 		    IPLBowlingCSVList = new CsvToBeanBuilder(reader).withType(IPLBowlingCSV.class).build().parse();
@@ -87,6 +87,12 @@ public class IPLAnalyzer {
 				.sorted((player1, player2) -> Double.compare(player1.sr, player2.sr))
 				.collect(Collectors.toList());
 		return sortedBowlingStrikingRateList;
+	}
+	public List<IPLBowlingCSV> getTopBowlerWithBestEconomy(){
+		List<IPLBowlingCSV> sortedBowlerWithBestEconomy = IPLBowlingCSVList.stream()
+				.sorted((player1, player2) -> Double.compare(player1.econ, player2.econ))
+				.collect(Collectors.toList());
+		return sortedBowlerWithBestEconomy;
 	}
 	public List<IPLBattingCSV> getTopBatmenWithMax6s(){
 		List<IPLBattingCSV> batmenWithMax6s = IPLBattingCSVList.stream()
