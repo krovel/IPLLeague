@@ -19,7 +19,7 @@ public class IPLAnalyzerTest {
 	public void setUp() throws IPLException {
 		IPLAnalyzer=new IPLAnalyzer();
 		IPLAnalyzer.loadDataToList(FILE_PATH);
-		IPLAnalyzer.loadBowlingDataToList(FILE_PATH_BOWLING_DATA);
+		IPLAnalyzer.loadIPLBowlingCSVToList(FILE_PATH_BOWLING_DATA);
 	}
 
 	@Test
@@ -78,19 +78,25 @@ public class IPLAnalyzerTest {
 	}
 	
 	@Test
-	public void givenIplBowlingData_SortBowlingDataAccordingToAverage_ReturnSameList() {
+	public void givenIplIPLBowlingCSV_SortIPLBowlingCSVAccordingToAverage_ReturnSameList() {
 		List<IPLBowlingCSV> listOfTopBowlingAverage = IPLAnalyzer. getTopBowlingAverages();
 		assertEquals("Anukul Roy",listOfTopBowlingAverage.get(0).player);
 		assertEquals("Jagadeesha Suchith",listOfTopBowlingAverage.get(1).player);
 		assertEquals("Alzarri Joseph",listOfTopBowlingAverage.get(2).player);
 	}
 
-	//UC8....
+
 	@Test
-	public void givenIplBowlingData_SortBowlingDataAccordingToStrikeRate_ReturnSameList() {
+	public void givenIplIPLBowlingCSV_SortIPLBowlingCSVAccordingToStrikeRate_ReturnSameList() {
 		List<IPLBowlingCSV> listOfTopBowlingStrikeRate = IPLAnalyzer.getTopBowlingStrikeRates();
 		assertEquals("Alzarri Joseph",listOfTopBowlingStrikeRate.get(0).player);
      	assertEquals("Ish Sodhi",listOfTopBowlingStrikeRate.get(1).player);
 		assertEquals("Khaleel Ahmed",listOfTopBowlingStrikeRate.get(2).player);
+	}
+	
+	@Test
+	public void givenIplIPLBowlingCSV_SortIPLBowlingCSVAccordingToEconomy_ReturnSameList() {
+		List<IPLBowlingCSV> listOfTopBowlersWithBestEconomy = IPLAnalyzer.getTopBowlerWithBestEconomy();
+		assertEquals("Shivam Dube",listOfTopBowlersWithBestEconomy.get(0).player);
 	}
 }
