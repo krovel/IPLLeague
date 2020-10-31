@@ -35,7 +35,7 @@ public class IPLBattingCSV {
 	public double sr;
 	
 	@CsvBindByName(column = "100")
-	int num100;
+	public int num100;
 	
 	@CsvBindByName(column = "50")
 	public int num50;

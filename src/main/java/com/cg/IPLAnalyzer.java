@@ -245,4 +245,21 @@ public class IPLAnalyzer {
 		}
 		return playerWithMostRunAndMostWickets;
 	}
+	public List<IPLBattingCSV> getPlayerWithMax100AndBestBattingAverage(){
+		int highestCenturies=IPLBattingCSVList.stream()
+				.map(player->player.num100)
+				.max(Integer::compare)
+				.get();
+
+		double highestAverage=IPLBattingCSVList.stream()
+				.map(player->player.avg)
+				.max(Double::compare)
+				.get();
+
+		List<IPLBattingCSV> batmenWithMaxCenturyAndBestBattingAverage = IPLBattingCSVList.stream()
+				.sorted((player1, player2) -> Double.compare(((player1.num100/highestCenturies)+(player1.avg/highestAverage)), ((player2.num100/highestCenturies)+(player2.avg/highestAverage))))
+				.collect(Collectors.toList());
+		Collections.reverse(batmenWithMaxCenturyAndBestBattingAverage);
+		return batmenWithMaxCenturyAndBestBattingAverage;
+	}
 }
