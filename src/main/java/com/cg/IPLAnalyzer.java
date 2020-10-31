@@ -262,4 +262,12 @@ public class IPLAnalyzer {
 		Collections.reverse(batmenWithMaxCenturyAndBestBattingAverage);
 		return batmenWithMaxCenturyAndBestBattingAverage;
 	}
+	public List<IPLBattingCSV> getPlayerWithZeroCenturyOrHalfCenturyAndBestBattingAverage(){
+		List<IPLBattingCSV> batmenWithZeroCenturyButBestBattingAverage = IPLBattingCSVList.stream()
+				.filter(player->player.num100==0 && player.num50==0)
+				.sorted((player1, player2) -> Double.compare(player1.avg,player2.avg))
+				.collect(Collectors.toList());
+		Collections.reverse(batmenWithZeroCenturyButBestBattingAverage);
+		return batmenWithZeroCenturyButBestBattingAverage;
+	}
 }
