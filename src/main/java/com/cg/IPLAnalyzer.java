@@ -64,7 +64,6 @@ public class IPLAnalyzer {
 		return sortedAvgList;
 	}
 	
-	//UC7......
 	public List<IPLBowlingCSV> getTopBowlingAverages(){
 		List<IPLBowlingCSV> sortedAvgBowlingList = IPLBowlingCSVList.stream()
 				.filter(player->player.avg!=0)
@@ -94,6 +93,22 @@ public class IPLAnalyzer {
 				.collect(Collectors.toList());
 		return sortedBowlerWithBestEconomy;
 	}
+	
+	public List<IPLBowlingCSV> getBowlersWithBestStrikeRateWithMax4wAnd5w(){
+		int max4wAnd5w=IPLBowlingCSVList.stream()
+				.map(player->player.num4w+player.num5w)
+				.max(Integer::compare)
+				.get();
+		List<IPLBowlingCSV> bowlersWithMax4wAnd5w=IPLBowlingCSVList.stream()
+				.filter(player->player.num4w+player.num5w==max4wAnd5w)
+				.collect(Collectors.toList());
+		List<IPLBowlingCSV> sortedWithBestStrikeRateAndMax4wAnd5w=bowlersWithMax4wAnd5w.stream()
+				.sorted((player1,player2)->Double.compare(player1.sr, player2.sr))
+				.collect(Collectors.toList());
+
+	   return sortedWithBestStrikeRateAndMax4wAnd5w;
+	}
+	
 	public List<IPLBattingCSV> getTopBatmenWithMax6s(){
 		List<IPLBattingCSV> batmenWithMax6s = IPLBattingCSVList.stream()
 				.sorted((player1, player2) -> Double.compare(player1.get6s(), player2.get6s()))

@@ -99,4 +99,10 @@ public class IPLAnalyzerTest {
 		List<IPLBowlingCSV> listOfTopBowlersWithBestEconomy = IPLAnalyzer.getTopBowlerWithBestEconomy();
 		assertEquals("Shivam Dube",listOfTopBowlersWithBestEconomy.get(0).player);
 	}
+	
+	@Test
+	public void givenIplIPLBowlingCSV_SortIPLBowlingCSVAccordingToBestEconomyWithMax4wAnd5w_ReturnSameList() {
+		List<IPLBowlingCSV> listOfTopBowlersWithBestStrikeRateANdMax4w5w = IPLAnalyzer.getBowlersWithBestStrikeRateWithMax4wAnd5w();
+		assertEquals("Kagiso Rabada",listOfTopBowlersWithBestStrikeRateANdMax4w5w.get(0).player);
+	}
 }
